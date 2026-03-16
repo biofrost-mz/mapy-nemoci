@@ -4,6 +4,12 @@ Interaktivní webová aplikace pro vizualizaci epidemiologických dat SZÚ podle
 
 ---
 
+## Produkční URL
+
+- https://resonant-lamington-2dfbd8.netlify.app/
+
+---
+
 ## Rychlý start
 
 ```bash
@@ -51,7 +57,7 @@ avenier-epi-map/
 
 ## Jak zadávat data
 
-1. Klikni na **„✏ Upravit data"** v pravém horním rohu
+1. Klikni na **„Upravit data"** v pravém horním rohu
 2. Záložka **„Informace"** – vyplň název diagnózy, kód, období, zdroj
 3. Záložka **„Data krajů"** – zadej počet případů a/nebo nemocnost pro každý kraj
 4. Klikni **„Hotovo"** – data se automaticky uloží do localStorage prohlížeče
@@ -121,15 +127,7 @@ V Netlify → Site settings → Domain management → Add custom domain.
 
 ## Logo
 
-Aplikace obsahuje SVG aproximaci loga Avenier.  
-Až budeš mít finální SVG soubor loga, nahraď komponentu `AvenierLogo` v `Header.jsx`:
-
-```jsx
-import logo from '../assets/avenier-logo.svg'
-
-// Místo inline SVG:
-<img src={logo} alt="Avenier" height={30} />
-```
+Logo je načítáno z `public/logo.png`.
 
 ---
 

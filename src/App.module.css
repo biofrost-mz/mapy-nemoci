@@ -39,17 +39,8 @@
   min-height: 0;
 }
 
-.mapCanvas {
-  position: relative;
-}
-
-.mapDetailDock {
-  position: absolute;
-  left: 14px;
-  bottom: 44px;
-  z-index: 25;
-  width: min(410px, calc(100% - 28px));
-  pointer-events: auto;
+.mapDetailUnder {
+  max-width: 460px;
 }
 
 /* Sidebar */
@@ -285,11 +276,7 @@
   .sidebar { overflow: visible; }
   .kpiRow { gap: 8px; }
   .kpiMeta { display: none; }
-  .mapDetailDock {
-    position: static;
-    width: 100%;
-    margin-top: 8px;
-  }
+  .mapDetailUnder { max-width: 100%; }
 }
 
 @media (max-width: 600px) {

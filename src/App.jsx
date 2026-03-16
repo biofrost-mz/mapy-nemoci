@@ -144,22 +144,20 @@ export default function App() {
           {activeDataset && (
             <KpiRow dataset={activeDataset} displayMode={effectiveDisplayMode} />
           )}
-          <div className={styles.mapCanvas}>
-            <Map
-              getDisplayValue={getDisplayValue}
-              maxValue={maxValue}
-              selectedRegion={selectedRegion}
-              onSelectRegion={setSelectedRegion}
-              displayMode={effectiveDisplayMode}
+          <Map
+            getDisplayValue={getDisplayValue}
+            maxValue={maxValue}
+            selectedRegion={selectedRegion}
+            onSelectRegion={setSelectedRegion}
+            displayMode={effectiveDisplayMode}
+            dataset={activeDataset}
+          />
+          <div className={styles.mapDetailUnder}>
+            <RegionDetail
+              regionName={detailRegion}
               dataset={activeDataset}
+              displayMode={effectiveDisplayMode}
             />
-            <div className={styles.mapDetailDock}>
-              <RegionDetail
-                regionName={detailRegion}
-                dataset={activeDataset}
-                displayMode={effectiveDisplayMode}
-              />
-            </div>
           </div>
         </section>
 

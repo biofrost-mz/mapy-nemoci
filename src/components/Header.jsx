@@ -1,32 +1,12 @@
 import styles from './Header.module.css'
 
-// Avenier logo jako inline SVG (aproximace z brandmanuálu)
-// Nahraď skutečným SVG souborem až ho budeš mít k dispozici
 export function AvenierLogo({ size = 32 }) {
   return (
-    <svg width={size * 2.8} height={size} viewBox="0 0 112 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Symbol – srdce s figurkou */}
-      <g transform="translate(0, 0)">
-        {/* Srdce */}
-        <path
-          d="M20 34C20 34 6 24 6 14C6 9.58 9.58 6 14 6C16.4 6 18.56 7.06 20 8.76C21.44 7.06 23.6 6 26 6C30.42 6 34 9.58 34 14C34 24 20 34 20 34Z"
-          stroke="#78be20" strokeWidth="2.2" fill="none" strokeLinejoin="round"
-        />
-        {/* Hlava */}
-        <circle cx="20" cy="13" r="3.2" stroke="#78be20" strokeWidth="2" fill="none" />
-        {/* Tělo */}
-        <path d="M14 24C14 20.69 16.69 18 20 18C23.31 18 26 20.69 26 24" stroke="#78be20" strokeWidth="2" fill="none" strokeLinecap="round" />
-      </g>
-      {/* Wordmark */}
-      <text
-        x="42" y="27"
-        fontFamily="'Saira', Arial, sans-serif"
-        fontWeight="600"
-        fontSize="18"
-        letterSpacing="2"
-        fill="#3c3c3c"
-      >AVENIER</text>
-    </svg>
+    <img
+      src="/logo.png"
+      alt="Avenier"
+      style={{ height: `${size}px`, width: 'auto', display: 'block' }}
+    />
   )
 }
 
@@ -115,14 +95,16 @@ export function Header({
               onClick={onOpenExport}
               title="Exportovat report"
             >
-              ⭳ Export
+              <span className={styles.btnIcon} aria-hidden="true">⤓</span>
+              <span>Export</span>
             </button>
             <button
               className={styles.editBtn}
               onClick={() => onOpenEditor(activeDatasetId)}
               title="Upravit data"
             >
-              ✏ Upravit data
+              <span className={styles.btnIcon} aria-hidden="true">✎</span>
+              <span>Upravit data</span>
             </button>
           </>
         )}

@@ -161,6 +161,9 @@
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .editBtn:hover { background: var(--av-green-dark); }
 
@@ -176,8 +179,17 @@
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .exportBtn:hover { background: var(--bg-subtle); }
+
+.btnIcon {
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0.9;
+}
 
 /* Embed header */
 .embedHeader {

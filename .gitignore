@@ -28,3 +28,4 @@ node_modules/.vite/
 # local datasets/files
 data/*.pdf
 czech-geojson-master/
+/logo.png

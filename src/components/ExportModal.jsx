@@ -165,8 +165,13 @@ export function ExportModal({
             <div ref={exportRef} className={styles.previewPaper}>
               {opts.header && (
                 <div className={styles.previewHeader}>
-                  <h2>{dataset.label || 'Epidemiologický přehled'}</h2>
-                  <div>{dataset.period || '—'} · {displayMode === 'rate' ? 'Nemocnost' : 'Absolutní počty'}</div>
+                  <div className={styles.previewHeaderTop}>
+                    <div>
+                      <h2>{dataset.label || 'Epidemiologický přehled'}</h2>
+                      <div>{dataset.period || '—'} · {displayMode === 'rate' ? 'Nemocnost' : 'Absolutní počty'}</div>
+                    </div>
+                    <img className={styles.previewLogo} src="/logo.png" alt="Avenier" />
+                  </div>
                 </div>
               )}
 

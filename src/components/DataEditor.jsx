@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { POPULATION, REGIONS } from '../data/regions'
 import styles from './DataEditor.module.css'
+import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 
 function normalizeText(value) {
   return String(value ?? '')
@@ -354,12 +355,22 @@ function detectUzisFormat(pages) {
   return 'unknown'
 }
 
+function libHasWorkerSrcError(err) {
+  return /GlobalWorkerOptions\.workerSrc|workerSrc/i.test(String(err?.message ?? ''))
+}
+
 async function loadPdfJsLib() {
+  let lib
   try {
-    return await import('pdfjs-dist/legacy/build/pdf.mjs')
+    lib = await import('pdfjs-dist/legacy/build/pdf.mjs')
   } catch {
-    return import('pdfjs-dist/build/pdf.mjs')
+    lib = await import('pdfjs-dist/build/pdf.mjs')
   }
+  if (lib?.GlobalWorkerOptions) {
+    // Required by pdf.js v5+ when no worker port is provided.
+    lib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl
+  }
+  return lib
 }
 
 async function readFileToUint8Array(file) {
@@ -394,14 +405,24 @@ async function readFileToUint8Array(file) {
 async function parseUzisPdf(file) {
   const pdfjsLib = await loadPdfJsLib()
   const buffer = await readFileToUint8Array(file)
-  const task = pdfjsLib.getDocument({
+  const openOptions = {
     data: buffer,
-    disableWorker: true,
     useSystemFonts: true,
     disableFontFace: true,
     stopAtErrors: false,
-  })
-  const pdf = await task.promise
+  }
+  let pdf
+  try {
+    pdf = await pdfjsLib.getDocument(openOptions).promise
+  } catch (err) {
+    // Last-resort fallback: explicit worker source from CDN.
+    if (libHasWorkerSrcError(err) && pdfjsLib?.GlobalWorkerOptions) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@5.5.207/build/pdf.worker.min.mjs'
+      pdf = await pdfjsLib.getDocument(openOptions).promise
+    } else {
+      throw err
+    }
+  }
   const pages = []
 
   for (let p = 1; p <= pdf.numPages; p += 1) {

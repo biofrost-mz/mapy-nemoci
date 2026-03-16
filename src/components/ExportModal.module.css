@@ -159,6 +159,20 @@
   color: var(--text-muted);
 }
 
+.previewHeaderTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.previewLogo {
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+  margin-top: 2px;
+}
+
 .previewMap {
   margin-top: 10px;
   min-height: 320px;
