@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { POPULATION, REGIONS } from '../data/regions'
 import styles from './DataEditor.module.css'
-import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 
 function normalizeText(value) {
   return String(value ?? '')
@@ -356,16 +355,11 @@ function detectUzisFormat(pages) {
 }
 
 async function loadPdfJsLib() {
-  let lib
   try {
-    lib = await import('pdfjs-dist/legacy/build/pdf.mjs')
+    return await import('pdfjs-dist/legacy/build/pdf.mjs')
   } catch {
-    lib = await import('pdfjs-dist/build/pdf.mjs')
+    return import('pdfjs-dist/build/pdf.mjs')
   }
-  if (lib?.GlobalWorkerOptions) {
-    lib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl
-  }
-  return lib
 }
 
 async function readFileToUint8Array(file) {
@@ -400,20 +394,14 @@ async function readFileToUint8Array(file) {
 async function parseUzisPdf(file) {
   const pdfjsLib = await loadPdfJsLib()
   const buffer = await readFileToUint8Array(file)
-  const openOptions = {
+  const task = pdfjsLib.getDocument({
     data: buffer,
+    disableWorker: true,
     useSystemFonts: true,
     disableFontFace: true,
     stopAtErrors: false,
-  }
-  let pdf
-  try {
-    pdf = await pdfjsLib.getDocument(openOptions).promise
-  } catch (err) {
-    // Browser fallback for worker-related runtime issues.
-    if (!/worker|workersrc/i.test(String(err?.message ?? ''))) throw err
-    pdf = await pdfjsLib.getDocument({ ...openOptions, disableWorker: true }).promise
-  }
+  })
+  const pdf = await task.promise
   const pages = []
 
   for (let p = 1; p <= pdf.numPages; p += 1) {
