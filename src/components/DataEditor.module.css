@@ -355,3 +355,117 @@
   transition: background 0.15s;
 }
 .btnDanger:hover { background: rgba(125, 0, 99, 0.06); }
+
+@media (max-width: 900px) {
+  .overlay {
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .panel {
+    width: min(740px, 100%);
+    height: min(100dvh - 20px, 980px);
+  }
+}
+
+@media (max-width: 700px) {
+  .overlay {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .panel {
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    border-radius: 0;
+    animation: none;
+  }
+
+  .header {
+    padding: 14px 14px 12px;
+  }
+
+  .tabs {
+    padding: 8px 12px 0;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .body {
+    padding: 12px;
+  }
+
+  .row2 {
+    grid-template-columns: 1fr;
+  }
+
+  .importTop,
+  .pdfTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .importInfo,
+  .pdfInfo {
+    text-align: left;
+  }
+
+  .importActions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .valuesHeader,
+  .valueRow {
+    grid-template-columns: minmax(80px, 1fr) 72px 72px;
+    gap: 6px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .colKraj {
+    font-size: 11px;
+  }
+
+  .colNum {
+    font-size: 11px;
+    padding: 5px 6px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .footerLeft {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer .btnPrimary,
+  .footer .btnSecondary,
+  .footer .btnDanger {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .headerTitle {
+    font-size: 15px;
+  }
+
+  .tab {
+    padding: 8px 9px;
+    font-size: 12px;
+  }
+
+  .valuesHeader,
+  .valueRow {
+    grid-template-columns: minmax(70px, 1fr) 66px 66px;
+    gap: 5px;
+  }
+}

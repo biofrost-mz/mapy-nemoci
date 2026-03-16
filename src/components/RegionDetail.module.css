@@ -96,3 +96,42 @@
   line-height: 1.6;
 }
 .emptyIcon { font-size: 28px; margin-bottom: 10px; }
+
+@media (max-width: 700px) {
+  .card {
+    padding: 14px;
+  }
+
+  .regionName {
+    font-size: 16px;
+  }
+
+  .metrics {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .metric {
+    padding: 10px 12px;
+  }
+
+  .metricValue {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 520px) {
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .row {
+    font-size: 11px;
+    gap: 8px;
+  }
+
+  .empty {
+    padding: 20px 14px;
+    font-size: 12px;
+  }
+}

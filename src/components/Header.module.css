@@ -207,3 +207,101 @@
 }
 .embedTitle span { color: var(--text-muted); font-weight: 400; }
 .embedLogo { opacity: 0.7; }
+
+@media (max-width: 1100px) {
+  .header {
+    height: auto;
+    padding: 10px 14px;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .left {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .center {
+    order: 3;
+    width: 100%;
+  }
+
+  .datasetTabs {
+    width: 100%;
+    padding-bottom: 0;
+  }
+
+  .right {
+    order: 2;
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 760px) {
+  .appNameSub {
+    display: none;
+  }
+
+  .right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .toggle {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .toggleBtn {
+    flex: 1;
+    text-align: center;
+    padding: 7px 8px;
+  }
+
+  .exportBtn,
+  .editBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 520px) {
+  .header {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .logo img {
+    height: 24px !important;
+  }
+
+  .appNameMain {
+    font-size: 11px;
+  }
+
+  .datasetTab {
+    padding: 3px 10px;
+  }
+
+  .datasetTabLabel,
+  .addDatasetBtn {
+    font-size: 11px;
+  }
+
+  .datasetTabPeriod {
+    font-size: 8px;
+  }
+
+  .btnIcon {
+    font-size: 12px;
+  }
+}
