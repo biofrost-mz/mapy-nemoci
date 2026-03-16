@@ -4,6 +4,7 @@ import { Header, AvenierLogo } from './components/Header'
 import { Map, ColorLegend } from './components/Map'
 import { RegionDetail } from './components/RegionDetail'
 import { BarChart } from './components/BarChart'
+import { TrendChart } from './components/TrendChart'
 import { DataEditor } from './components/DataEditor'
 import { ExportModal } from './components/ExportModal'
 import { EmbedModal } from './components/EmbedModal'
@@ -182,6 +183,13 @@ export default function App() {
             displayMode={effectiveDisplayMode}
             selectedRegion={selectedRegion}
             onSelectRegion={setSelectedRegion}
+          />
+          <TrendChart
+            datasets={datasets}
+            activeDataset={activeDataset}
+            activeDatasetId={activeDatasetId}
+            displayMode={effectiveDisplayMode}
+            onSelectDataset={setActiveDatasetId}
           />
         </aside>
       </main>
