@@ -1,0 +1,197 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(0, 103, 120, 0.07);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.logo { display: flex; align-items: center; }
+
+.divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+}
+
+.appName {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.appNameMain {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--av-petrol);
+}
+.appNameSub {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Dataset tabs */
+.center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  gap: 0;
+  min-width: 0;
+}
+
+.datasetTabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.datasetTab {
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.datasetTab:hover { border-color: var(--av-green); background: rgba(120,190,32,0.06); }
+.datasetTabActive {
+  background: var(--av-green);
+  border-color: var(--av-green);
+  box-shadow: 0 2px 8px rgba(120,190,32,0.3);
+}
+
+.datasetTabLabel {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+.datasetTabActive .datasetTabLabel { color: #fff; }
+
+.datasetTabPeriod {
+  font-size: 9px;
+  color: var(--text-muted);
+  line-height: 1;
+}
+.datasetTabActive .datasetTabPeriod { color: rgba(255,255,255,0.8); }
+
+.addDatasetBtn {
+  background: none;
+  border: 1.5px dashed var(--border-strong);
+  border-radius: 20px;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.addDatasetBtn:hover { border-color: var(--av-green); color: var(--av-green); }
+
+/* Right controls */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.toggle {
+  display: flex;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.toggleBtn {
+  background: none;
+  border: none;
+  border-radius: 16px;
+  padding: 5px 12px;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.toggleBtn:hover { color: var(--text); }
+.toggleActive {
+  background: var(--av-petrol);
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(0,103,120,0.25);
+}
+
+.editBtn {
+  background: var(--av-petrol);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 7px 14px;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.editBtn:hover { background: var(--av-green-dark); }
+
+.exportBtn {
+  background: #fff;
+  color: var(--av-petrol);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 7px 14px;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.exportBtn:hover { background: var(--bg-subtle); }
+
+/* Embed header */
+.embedHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+.embedTitle {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  color: var(--av-petrol);
+}
+.embedTitle span { color: var(--text-muted); font-weight: 400; }
+.embedLogo { opacity: 0.7; }

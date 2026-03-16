@@ -1,0 +1,98 @@
+.card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  border: 1.5px solid var(--border-strong);
+  box-shadow: var(--shadow);
+}
+
+.regionName {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--av-petrol);
+  margin-bottom: 2px;
+}
+
+.datasetLabel {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  font-family: var(--font-heading);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.metric {
+  background: var(--bg-subtle);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+}
+
+.metricValue {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--av-green-dark);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.metricLabel {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+}
+
+.rows {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.rowKey { color: var(--text-muted); }
+
+.rowVal {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.above { color: var(--av-bordeaux); }
+.below { color: var(--av-green-dark); }
+
+.source {
+  margin-top: 14px;
+  font-size: 10px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+
+/* Empty state */
+.empty {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 32px 20px;
+  text-align: center;
+  border: 1.5px dashed var(--border-strong);
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.emptyIcon { font-size: 28px; margin-bottom: 10px; }

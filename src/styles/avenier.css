@@ -1,0 +1,80 @@
+/* ─── Avenier Brand CSS ─────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap');
+
+:root {
+  /* Brand colors */
+  --av-green:        #78be20;   /* 01 – primární zelená */
+  --av-petrol:       #006778;   /* 02 – petrolejová */
+  --av-green-light:  #bde18a;   /* 03 – světle zelená */
+  --av-gray-dark:    #3c3c3c;   /* 04 – tmavá šedá */
+  --av-bordeaux:     #7d0063;   /* 05 – bordó */
+  --av-teal:         #0587aa;   /* 06 – tyrkysová */
+  --av-gray-light:   #e6e6e6;   /* 07 – světle šedá */
+  --av-green-dark:   #5b8f22;   /* 08 – tmavě zelená */
+  --av-pink:         #ca005d;   /* 09 – růžová */
+
+  /* Gradient colors */
+  --av-grad-blue:    #007ac9;
+  --av-grad-mid:     #00778e;
+  --av-grad-green:   #78be20;
+
+  /* UI tokens */
+  --bg:              #ffffff;
+  --bg-subtle:       #f7f9f4;
+  --surface:         #ffffff;
+  --border:          #e0e8d8;
+  --border-strong:   #c5d9ac;
+  --text:            #1a1a1a;
+  --text-muted:      #6b7c5a;
+  --text-on-dark:    #ffffff;
+  --accent:          var(--av-green);
+  --accent-dark:     var(--av-green-dark);
+
+  /* Map color scale (7 kroků: prázdná → max) */
+  --map-0:  #f0f5e8;   /* žádné případy */
+  --map-1:  #d4eaaa;
+  --map-2:  #aad46a;
+  --map-3:  #78be20;   /* brand zelená */
+  --map-4:  #5b9e1a;
+  --map-5:  #006778;   /* petrolejová */
+  --map-6:  #004d5c;   /* tmavá petrolejová */
+
+  /* Typography */
+  --font-heading: 'Saira', Arial, sans-serif;
+  --font-body:    'Open Sans', Arial, sans-serif;
+
+  /* Spacing */
+  --radius:   8px;
+  --radius-lg: 12px;
+  --shadow:   0 2px 12px rgba(0, 103, 120, 0.08);
+  --shadow-lg: 0 4px 24px rgba(0, 103, 120, 0.14);
+}
+
+/* ─── Reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-subtle);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Typography helpers ─────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-subtle); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
