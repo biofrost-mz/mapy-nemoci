@@ -17,6 +17,7 @@ export function Header({
   onAddDataset,
   onOpenEditor,
   onOpenExport,
+  onOpenEmbed,
   displayMode,
   onSetDisplayMode,
   activeDataset,
@@ -97,6 +98,14 @@ export function Header({
             >
               <span className={styles.btnIcon} aria-hidden="true">⤓</span>
               <span>Export</span>
+            </button>
+            <button
+              className={styles.shareBtn}
+              onClick={onOpenEmbed}
+              title="Vygenerovat iframe kód"
+            >
+              <span className={styles.btnIcon} aria-hidden="true">&lt;/&gt;</span>
+              <span>Embed</span>
             </button>
             <button
               className={styles.editBtn}

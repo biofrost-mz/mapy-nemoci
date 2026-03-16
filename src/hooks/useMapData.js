@@ -17,26 +17,43 @@ function saveToStorage(datasets) {
   } catch {}
 }
 
-export function useMapData() {
+function normalizeMode(mode) {
+  return mode === 'count' ? 'count' : 'rate'
+}
+
+export function useMapData({
+  initialDatasets = null,
+  initialActiveDatasetId = null,
+  persist = true,
+  initialDisplayMode = 'rate',
+} = {}) {
   const [datasets, setDatasets] = useState(() => {
+    if (Array.isArray(initialDatasets) && initialDatasets.length > 0) {
+      return initialDatasets
+    }
     const stored = loadFromStorage()
     return stored && stored.length > 0 ? stored : [EXAMPLE_DATASET]
   })
 
   const [activeDatasetId, setActiveDatasetId] = useState(() => {
+    if (initialActiveDatasetId) return initialActiveDatasetId
+    if (Array.isArray(initialDatasets) && initialDatasets.length > 0) {
+      return initialDatasets[0].id
+    }
     const stored = loadFromStorage()
     return stored?.[0]?.id ?? EXAMPLE_DATASET.id
   })
 
-  const [displayMode, setDisplayMode] = useState('rate') // 'count' | 'rate'
+  const [displayMode, setDisplayMode] = useState(normalizeMode(initialDisplayMode)) // 'count' | 'rate'
   const [selectedRegion, setSelectedRegion] = useState(null)
   const [editorOpen, setEditorOpen] = useState(false)
   const [editingDatasetId, setEditingDatasetId] = useState(null)
 
   // Persist to localStorage whenever datasets change
   useEffect(() => {
+    if (!persist) return
     saveToStorage(datasets)
-  }, [datasets])
+  }, [datasets, persist])
 
   const activeDataset = datasets.find(d => d.id === activeDatasetId) ?? datasets[0]
 

@@ -25,6 +25,8 @@ npm run build
 # → výstup v adresáři dist/
 ```
 
+Tip: V plné verzi aplikace je tlačítko **Embed**, které iframe kód připraví a zkopíruje automaticky.
+
 ---
 
 ## Struktura projektu
@@ -73,6 +75,7 @@ avenier-epi-map/
 | `/?mode=embed-full` | Iframe s mapou + barchart + detail kraje |
 | `/?display=rate` | Výchozí zobrazení: nemocnost (výchozí) |
 | `/?display=count` | Výchozí zobrazení: absolutní počty |
+| `/?share=...` | Snapshot datasetu uložený přímo v URL (stabilní sdílení) |
 
 ### Příklady vložení do článku (iframe)
 

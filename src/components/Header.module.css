@@ -185,6 +185,24 @@
 }
 .exportBtn:hover { background: var(--bg-subtle); }
 
+.shareBtn {
+  background: #fff;
+  color: var(--av-petrol);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 7px 14px;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.shareBtn:hover { background: var(--bg-subtle); }
+
 .btnIcon {
   font-size: 13px;
   line-height: 1;
@@ -250,7 +268,7 @@
 
   .right {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     align-items: center;
   }
 
@@ -266,6 +284,7 @@
   }
 
   .exportBtn,
+  .shareBtn,
   .editBtn {
     width: 100%;
     justify-content: center;

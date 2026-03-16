@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useMapData } from './hooks/useMapData'
 import { Header, AvenierLogo } from './components/Header'
 import { Map, ColorLegend } from './components/Map'
@@ -6,6 +6,8 @@ import { RegionDetail } from './components/RegionDetail'
 import { BarChart } from './components/BarChart'
 import { DataEditor } from './components/DataEditor'
 import { ExportModal } from './components/ExportModal'
+import { EmbedModal } from './components/EmbedModal'
+import { decodeShareState } from './utils/shareSnapshot'
 import styles from './App.module.css'
 
 // Read URL params — podporované parametry:
@@ -16,17 +18,24 @@ import styles from './App.module.css'
 function getUrlParams() {
   const params = new URLSearchParams(window.location.search)
   return {
-    mode: params.get('mode') ?? 'full',
-    display: params.get('display') ?? 'rate',
+    mode: params.get('mode'),
+    display: params.get('display'),
+    share: params.get('share'),
   }
 }
 
 export default function App() {
-  const urlParams = getUrlParams()
-  const embedMode = urlParams.mode === 'embed'
-  const embedFull = urlParams.mode === 'embed-full'
+  const urlParams = useMemo(() => getUrlParams(), [])
+  const sharedState = useMemo(() => decodeShareState(urlParams.share), [urlParams.share])
+  const resolvedMode = urlParams.mode ?? sharedState?.mode ?? 'full'
+  const initialDisplay = urlParams.display ?? sharedState?.display ?? 'rate'
+  const sharedDataset = sharedState?.dataset ?? null
+
+  const embedMode = resolvedMode === 'embed'
+  const embedFull = resolvedMode === 'embed-full'
   const isEmbed = embedMode || embedFull
   const [exportOpen, setExportOpen] = useState(false)
+  const [embedOpen, setEmbedOpen] = useState(false)
 
   const {
     datasets, activeDataset, activeDatasetId,
@@ -36,7 +45,12 @@ export default function App() {
     addDataset, updateDataset, updateRegionValue,
     deleteDataset, duplicateDataset,
     openEditor, closeEditor, getDisplayValue,
-  } = useMapData()
+  } = useMapData({
+    initialDatasets: sharedDataset ? [sharedDataset] : null,
+    initialActiveDatasetId: sharedDataset?.id ?? null,
+    persist: !sharedDataset,
+    initialDisplayMode: initialDisplay,
+  })
 
   const effectiveDisplayMode = displayMode
   const detailRegion = selectedRegion || getTopRegion(activeDataset, effectiveDisplayMode)
@@ -132,6 +146,7 @@ export default function App() {
         onAddDataset={addDataset}
         onOpenEditor={openEditor}
         onOpenExport={() => setExportOpen(true)}
+        onOpenEmbed={() => setEmbedOpen(true)}
         displayMode={effectiveDisplayMode}
         onSetDisplayMode={setDisplayMode}
         activeDataset={activeDataset}
@@ -200,6 +215,15 @@ export default function App() {
           onSelectRegion={setSelectedRegion}
           getDisplayValue={getDisplayValue}
           maxValue={maxValue}
+        />
+      )}
+
+      {embedOpen && activeDataset && (
+        <EmbedModal
+          open={embedOpen}
+          onClose={() => setEmbedOpen(false)}
+          dataset={activeDataset}
+          displayMode={effectiveDisplayMode}
         />
       )}
     </div>
