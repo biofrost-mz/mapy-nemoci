@@ -2,6 +2,8 @@
 
 Interaktivní webová aplikace pro vizualizaci epidemiologických dat SZÚ podle krajů ČR.
 
+Stav projektu, architektura a doporučené kroky: [`docs/STAV-A-UKLID-2026-10.md`](docs/STAV-A-UKLID-2026-10.md).
+
 ---
 
 ## Produkční URL
@@ -20,7 +22,10 @@ npm install
 npm run dev
 # → http://localhost:5173 (nebo 5174 pokud 5173 je obsazený)
 
-# 3. Build pro produkci
+# 3. Testy (Vitest)
+npm test
+
+# 4. Build pro produkci
 npm run build
 # → výstup v adresáři dist/
 ```
@@ -35,16 +40,22 @@ Tip: V plné verzi aplikace je tlačítko **Embed**, které iframe kód připrav
 avenier-epi-map/
 ├── public/
 │   ├── kraje.json            ← GeoJSON hranic 14 krajů ČR
-│   └── czech_republic.json   ← GeoJSON hranice ČR
+│   └── logo.png              ← logo + favicon
 ├── src/
 │   ├── components/
 │   │   ├── Map.jsx           ← D3 + GeoJSON mapa
 │   │   ├── RegionDetail.jsx  ← Detail vybraného kraje
 │   │   ├── BarChart.jsx      ← Sloupcový přehled krajů
 │   │   ├── DataEditor.jsx    ← Formulář pro ruční zadání dat
-│   │   └── Header.jsx        ← Navigace + přepínače
+│   │   ├── Header.jsx        ← Navigace + přepínače
+│   │   ├── TrendChart.jsx    ← Vývoj nemoci napříč obdobími
+│   │   ├── ExportModal.jsx   ← Export PNG/PDF
+│   │   ├── EmbedModal.jsx    ← Generátor iframe kódu
+│   │   └── AppErrorBoundary.jsx
 │   ├── data/
 │   │   └── regions.js        ← Definice krajů + příkladová data
+│   ├── utils/
+│   │   └── shareSnapshot.js  ← Snapshot datasetu do URL (?share=)
 │   ├── hooks/
 │   │   └── useMapData.js     ← State management + localStorage
 │   ├── styles/
