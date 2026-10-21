@@ -1,6 +1,4 @@
 import { useMemo, useRef, useState } from 'react'
-import { toPng } from 'html-to-image'
-import { jsPDF } from 'jspdf'
 import { Map } from './Map'
 import { RegionDetail } from './RegionDetail'
 import { BarChart } from './BarChart'
@@ -96,6 +94,8 @@ export function ExportModal({
         backgroundColor: '#ffffff',
       }
 
+      // Exportní knihovny se načítají až při prvním exportu (menší úvodní bundle).
+      const { toPng } = await import('html-to-image')
       const pngUrl = await toPng(exportRef.current, imageOptions)
       if (format === 'png') {
         downloadDataUrl(pngUrl, `${filenameBase}.png`)
@@ -110,6 +110,7 @@ export function ExportModal({
           img.src = pngUrl
         })
         const orientation = img.width >= img.height ? 'landscape' : 'portrait'
+        const { jsPDF } = await import('jspdf')
         const pdf = new jsPDF({
           orientation,
           unit: 'px',
