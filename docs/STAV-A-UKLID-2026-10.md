@@ -33,7 +33,7 @@
 
 ## Zjištěná rizika a dluh
 
-1. Hlavní bundle ~660 kB (jsPDF, html2canvas) – export lze načítat líně (`import()` až při kliknutí).
+1. Export: jsPDF a html-to-image se načítají až při exportu (hlavní bundle ~260 kB místo ~660 kB).
 2. Data existují jen v `localStorage` prohlížeče redaktora – při vymazání prohlížeče se ztratí.
    Pro trvalost exportovat JSON nebo uložit datasety do repa / CMS.
 3. Žádný lint ani CI (Netlify jen builduje).
