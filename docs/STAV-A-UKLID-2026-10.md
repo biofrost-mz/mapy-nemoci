@@ -36,7 +36,7 @@
 1. Export: jsPDF a html-to-image se načítají až při exportu (hlavní bundle ~260 kB místo ~660 kB).
 2. Data existují jen v `localStorage` prohlížeče redaktora – při vymazání prohlížeče se ztratí.
    Pro trvalost exportovat JSON nebo uložit datasety do repa / CMS.
-3. Žádný lint ani CI (Netlify jen builduje).
+3. CI (GitHub Actions: testy + build) přidáno; lint chybí.
 4. Doménu Avenier (vlastní subdoména) README zmiňuje jen obecně – produkční URL je `*.netlify.app`.
 
 ## Úkoly pro vlastníka
